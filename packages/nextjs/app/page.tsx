@@ -1,55 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { ChatLayout } from "../components/chat/chat-layout";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../components/ui/dialog";
+import Gamma from "../lib/gamma";
+import { getSelectedModel } from "../lib/model-helper";
+import { ChatInstance } from "./Chat";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
-import type { NextPage } from "next";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
-import { sendTransaction, signMessage } from "~~/lib/dynamic";
+import { DynamicConnectButton, DynamicEmbeddedWidget, DynamicWidget } from "@dynamic-labs/sdk-react-core";
+import { ChatOllama } from "@langchain/community/chat_models/ollama";
+import { AIMessage, HumanMessage } from "@langchain/core/messages";
+import { BytesOutputParser } from "@langchain/core/output_parsers";
+import { ChatRequestOptions } from "ai";
+import { Message, useChat } from "ai/react";
+import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
 
-const Home: NextPage = () => {
-  const { primaryWallet, networkConfigurations } = useDynamicContext();
-  const [messageSignature, setMessageSignature] = useState<string>("");
-  const [transactionSignature, setTransactionSignature] = useState<string>("");
-  const connectedAddress = primaryWallet?.address;
-
-  const handleSignMesssage = async () => {
-    try {
-      const signature = await signMessage("Hello World", primaryWallet);
-      setMessageSignature(signature);
-
-      setTimeout(() => {
-        setMessageSignature("");
-      }, 10000);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleSendTransaction = async () => {
-    try {
-      const isTestnet = await primaryWallet?.connector?.isTestnet();
-
-      if (!isTestnet) {
-        alert("You're not on a testnet, proceed with caution.");
-      }
-      const hash = await sendTransaction(connectedAddress, "0.0001", primaryWallet!, networkConfigurations!);
-      setTransactionSignature(hash!);
-
-      setTimeout(() => {
-        setTransactionSignature("");
-      }, 10000);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  return (
-    <>
-      <div className="flex items-center flex-col flex-grow pt-10"></div>
-    </>
-  );
-};
-
-export default Home;
+export default function Home() {
+  return <ChatInstance />;
+}

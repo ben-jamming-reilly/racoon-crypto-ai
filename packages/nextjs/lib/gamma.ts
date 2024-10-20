@@ -1,11 +1,14 @@
 import { ChatCompletionRequest } from "@mlc-ai/web-llm";
 import { CreateMLCEngine, MLCEngine } from "@mlc-ai/web-llm";
+import { CreateServiceWorkerMLCEngine, CreateWebWorkerMLCEngine, MLCEngineInterface } from "@mlc-ai/web-llm";
+
 
 const selectedModel = "Llama-3.1-8B-Instruct-q4f32_1-MLC";
+//  const selectedModel ="Llama-3.1-8B-Instruct-q0f16-MLC";
 
 class Gamma {
   private static instance: Gamma | null = null;
-  private chatModule: MLCEngine | null = null;
+  private chatModule: MLCEngineInterface | null = null;
   private isInitialized: Promise<void>;
 
   private constructor() {
@@ -24,25 +27,21 @@ class Gamma {
     // @ts-ignore Not going to set gpu for rn
     if (navigator.gpu) {
       console.log("Initializing in-browser model");
-      // this.chatModule = new ChatModule();
 
-      const engine = await CreateMLCEngine(selectedModel, {
-        initProgressCallback: initProgress => console.log(initProgress.text),
-      });
+      const engine = await CreateWebWorkerMLCEngine(
+        new Worker(new URL("./worker.ts", import.meta.url), {
+          type: "module",
+        }),
+        selectedModel,
+        { initProgressCallback: initProgress => console.log(initProgress.text) }, // engineConfig
+      );
+
+      // const engine = await CreateMLCEngine(selectedModel, {
+      //   initProgressCallback: initProgress => console.log(initProgress.text),
+      // });
 
       this.chatModule = engine;
 
-      // await this.chatModule.reload("gemma-2b-it-q4f16_1", undefined, {
-      //   model_list: [
-      //     {
-      //       model_url: "https://huggingface.co/mlc-ai/gemma-2b-it-q4f16_1-MLC/resolve/main/",
-      //       local_id: "gemma-2b-it-q4f16_1",
-      //       model_lib_url:
-      //         "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/gemma-2b-it/gemma-2b-it-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-      //       required_features: ["shader-f16"],
-      //     },
-      //   ],
-      // });
       console.log("Gemma initialized");
     }
   }
@@ -52,6 +51,7 @@ class Gamma {
       this.isInitialized = this.initializeGemma();
     }
     await this.isInitialized;
+    // @ts-ignore
     if (navigator.gpu) {
       console.log("Using Gemma...");
       // Use Gemma for summarization
