@@ -7,16 +7,14 @@ import { useRouter } from "next/navigation";
 import { useLocalStorageData } from "../app/hooks/useLocalStorageData";
 import { Button, buttonVariants } from "../components/ui/button";
 import { cn } from "../lib/utils";
-import PullModel from "./pull-model";
 import SidebarSkeleton from "./sidebar-skeleton";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import UserSettings from "./user-settings";
-import { TrashIcon } from "@radix-ui/react-icons";
-import { ScrollArea, Scrollbar } from "@radix-ui/react-scroll-area";
+import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { Message } from "ai/react";
 import { MoreHorizontal, SquarePen, Trash2 } from "lucide-react";
+import { FaucetButton } from "~~/components/scaffold-eth";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -80,12 +78,25 @@ export function Sidebar({ messages, isCollapsed, isMobile, chatId }: SidebarProp
     setLocalChats(getLocalstorageChats());
   };
 
+  const { primaryWallet, networkConfigurations } = useDynamicContext();
+
   return (
     <div
       data-collapsed={isCollapsed}
-      className="relative justify-between group lg:bg-accent/20 lg:dark:bg-card/35 flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2 "
+      className="relative  group lg:bg-accent/20 lg:dark:bg-card/35 flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2 "
     >
-      <div className=" flex flex-col justify-between p-2 max-h-fit overflow-y-auto">
+      <div className=" px-2 py-2 w-full border-b min-h-16">
+        <div className="flex flex-row m-auto flex-wrap gap-2 ">
+          {primaryWallet && (
+            <>
+              <DynamicWidget variant="modal" />
+              <FaucetButton />
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-between p-2 max-h-fit overflow-y-auto flex-1">
         <Button
           onClick={() => {
             router.push("/");
@@ -97,7 +108,7 @@ export function Sidebar({ messages, isCollapsed, isMobile, chatId }: SidebarProp
         >
           <div className="flex gap-3 items-center ">
             {!isCollapsed && !isMobile && (
-              <Image src="/ollama.png" alt="AI" width={28} height={28} className="dark:invert hidden 2xl:block" />
+              <Image src="/racoon.png" alt="AI" width={28} height={28} className="dark:invert hidden 2xl:block" />
             )}
             New chat
           </div>
@@ -165,10 +176,6 @@ export function Sidebar({ messages, isCollapsed, isMobile, chatId }: SidebarProp
           )}
           {isLoading && <SidebarSkeleton />}
         </div>
-      </div>
-
-      <div className="justify-end px-2 py-2 w-full border-t">
-        <UserSettings />
       </div>
     </div>
   );

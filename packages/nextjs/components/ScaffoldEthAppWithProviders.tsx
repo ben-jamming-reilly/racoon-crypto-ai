@@ -15,6 +15,7 @@ import { customEvmNetworks } from "~~/lib/networks";
 import scaffoldConfig from "~~/scaffold.config";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
+
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
 
@@ -60,11 +61,9 @@ const evmNetworks = [
 ];
 
 export const ScaffoldEthAppWithProviders = ({ children }: { children: React.ReactNode }) => {
-  const { resolvedTheme } = useTheme();
-
   return (
     <DynamicContextProvider
-      theme={resolvedTheme === "dark" ? "dark" : "light"}
+      theme={"light"}
       settings={{
         environmentId: scaffoldConfig.dynamicEnvId,
         walletConnectors: [EthereumWalletConnectors],

@@ -65,8 +65,8 @@ export function ChatLayout({
         defaultSize={defaultLayout[0]}
         collapsedSize={navCollapsedSize}
         collapsible={true}
-        minSize={isMobile ? 0 : 12}
-        maxSize={isMobile ? 0 : 32}
+        minSize={isMobile ? 0 : 24}
+        maxSize={isMobile ? 0 : 40}
         onCollapse={() => {
           setIsCollapsed(true);
           document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(true)}`;

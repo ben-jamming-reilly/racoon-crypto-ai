@@ -43,7 +43,7 @@ export default function ChatList({
     return (
       <div className="w-full h-full flex justify-center items-center">
         <div className="flex flex-col gap-4 items-center">
-          <Image src="/ollama.png" alt="AI" width={60} height={60} className="h-20 w-14 object-contain dark:invert" />
+          <Image src="/racoon.png" alt="AI" width={100} height={100} className="h-20 w-14 object-contain " />
           <p className="text-center text-lg text-muted-foreground">How can I help you today?</p>
         </div>
       </div>
@@ -96,11 +96,11 @@ export default function ChatList({
                 <div className="flex items-end gap-2">
                   <Avatar className="flex justify-start items-center">
                     <AvatarImage
-                      src="/ollama.png"
+                      src="/racoon.png"
                       alt="AI"
-                      width={6}
-                      height={6}
-                      className="object-contain dark:invert"
+                      width={10}
+                      height={10}
+                      className="object-contain "
                     />
                   </Avatar>
                   <span className="bg-accent p-3 rounded-md max-w-xs sm:max-w-2xl overflow-x-auto">
@@ -134,7 +134,7 @@ export default function ChatList({
         {loadingSubmit && (
           <div className="flex pl-4 pb-4 gap-2 items-center">
             <Avatar className="flex justify-start items-center">
-              <AvatarImage src="/ollama.png" alt="AI" width={6} height={6} className="object-contain dark:invert" />
+              <AvatarImage src="/racoon.png" alt="AI" width={6} height={6} className="object-contain " />
             </Avatar>
             <div className="bg-accent p-3 rounded-md max-w-xs sm:max-w-2xl overflow-x-auto">
               <div className="flex gap-1">
