@@ -16,6 +16,7 @@ import { Message } from "ai/react";
 import { MoreHorizontal, SquarePen, Trash2 } from "lucide-react";
 import { FaucetButton } from "~~/components/scaffold-eth";
 
+
 interface SidebarProps {
   isCollapsed: boolean;
   messages: Message[];
@@ -78,7 +79,7 @@ export function Sidebar({ messages, isCollapsed, isMobile, chatId }: SidebarProp
     setLocalChats(getLocalstorageChats());
   };
 
-  const { primaryWallet, networkConfigurations } = useDynamicContext();
+  const { primaryWallet } = useDynamicContext();
 
   return (
     <div

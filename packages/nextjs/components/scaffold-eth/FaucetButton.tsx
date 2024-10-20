@@ -60,7 +60,6 @@ export const FaucetButton = () => {
           ? "ml-0"
           : "ml-0 tooltip tooltip-bottom tooltip-secondary tooltip-open font-bold before:left-auto before:transform-none before:content-[attr(data-tip)] before:right-0"
       }
-      data-tip="Grab funds from faucet"
     >
       <Button variant="secondary" onClick={sendETH} disabled={loading}>
         {!loading ? (

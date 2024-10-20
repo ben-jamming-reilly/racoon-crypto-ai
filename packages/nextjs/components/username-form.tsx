@@ -53,7 +53,6 @@ export default function UsernameForm({ setOpen }: UsernameFormProps) {
           )}
         />
         {/* <DynamicWidget /> */}
-        <DynamicEmbeddedWidget background="with-border" />
         <Button className="w-full" type="submit">
           Submit
         </Button>

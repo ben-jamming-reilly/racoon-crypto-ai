@@ -1,17 +1,13 @@
 "use state";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ChatLayout } from "../components/chat/chat-layout";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../components/ui/dialog";
 import Gamma from "../lib/gamma";
 import { getSelectedModel } from "../lib/model-helper";
 import { DynamicEmbeddedWidget } from "@dynamic-labs/sdk-react-core";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
-import { ChatOllama } from "@langchain/community/chat_models/ollama";
-import { AIMessage, HumanMessage } from "@langchain/core/messages";
-import { BytesOutputParser } from "@langchain/core/output_parsers";
-import { ChatRequestOptions } from "ai";
-import { Message, useChat } from "ai/react";
+import { useChat } from "ai/react";
 import { toast } from "sonner";
 
 export function ChatInstance({ id = "" }: { id?: string }) {
@@ -30,7 +26,6 @@ export function ChatInstance({ id = "" }: { id?: string }) {
   const [selectedModel, setSelectedModel] = React.useState<string>(getSelectedModel());
   const [gamma, setGamma] = React.useState<Gamma | null>(null);
   const [open, setOpen] = React.useState(true);
-  const env = process.env.NODE_ENV;
   const [loadingSubmit, setLoadingSubmit] = React.useState(false);
 
   useEffect(() => {
@@ -126,9 +121,9 @@ export function ChatInstance({ id = "" }: { id?: string }) {
         />
         <DialogContent className="flex flex-col space-y-4">
           <DialogHeader className="space-y-2">
-            <DialogTitle>Welcome to Ollama!</DialogTitle>
+            <DialogTitle>Racoon!</DialogTitle>
             <DialogDescription>
-              Enter your name to get started. This is just to personalize your experience.
+              The coolest way to use a chat interface to interact with your favorite protocols
             </DialogDescription>
 
             <DynamicEmbeddedWidget background="none" />

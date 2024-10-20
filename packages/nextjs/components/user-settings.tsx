@@ -8,7 +8,6 @@ import PullModel from "./pull-model";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
-import UsernameForm from "./username-form";
 import { GearIcon } from "@radix-ui/react-icons";
 import { Loader2 } from "lucide-react";
 import { set } from "zod";

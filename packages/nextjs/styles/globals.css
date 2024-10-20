@@ -132,3 +132,9 @@ p {
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+.dynamic-widget-dropdown {
+  position: absolute;
+  right: 0;
+  top: 3.0625rem;
+}

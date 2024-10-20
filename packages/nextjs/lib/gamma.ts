@@ -35,11 +35,6 @@ class Gamma {
         selectedModel,
         { initProgressCallback: initProgress => console.log(initProgress.text) }, // engineConfig
       );
-
-      // const engine = await CreateMLCEngine(selectedModel, {
-      //   initProgressCallback: initProgress => console.log(initProgress.text),
-      // });
-
       this.chatModule = engine;
 
       console.log("Gemma initialized");

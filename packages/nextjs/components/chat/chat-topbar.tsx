@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CaretSortIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Message } from "ai/react";
 
+
 interface ChatTopbarProps {
   setSelectedModel: React.Dispatch<React.SetStateAction<string>>;
   isLoading: boolean;
@@ -24,22 +25,6 @@ export default function ChatTopbar({ setSelectedModel, isLoading, chatId, messag
     setCurrentModel(getSelectedModel());
 
     const env = process.env.NODE_ENV;
-
-    const fetchModels = async () => {
-      if (env === "production") {
-        const fetchedModels = await fetch("http://localhost:11434/api/tags");
-        const json = await fetchedModels.json();
-        const apiModels = json.models.map((model: { name: any }) => model.name);
-        setModels(["Browser Model", "REST API", ...apiModels]);
-      } else {
-        const fetchedModels = await fetch("/api/tags");
-        const json = await fetchedModels.json();
-        console.log(json);
-        const apiModels = json.models.map((model: { name: any }) => model.name); // Extracting only the "name" property from each model object
-        setModels(["Browser Model", "REST API", ...apiModels]);
-      }
-    };
-    fetchModels();
   }, []);
 
   const handleModelChange = (model: string) => {
