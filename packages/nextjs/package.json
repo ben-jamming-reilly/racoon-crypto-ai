@@ -18,6 +18,7 @@
     "@dynamic-labs/ethereum": "^3.0.0",
     "@dynamic-labs/ethereum-core": "3.0.0",
     "@dynamic-labs/sdk-react-core": "^3.0.0",
+    "@dynamic-labs/viem-utils": "^2.6.2",
     "@dynamic-labs/wagmi-connector": "^3.0.0",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
