@@ -1808,6 +1808,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dynamic-labs/viem-utils@npm:^2.6.2":
+  version: 2.6.3
+  resolution: "@dynamic-labs/viem-utils@npm:2.6.3"
+  peerDependencies:
+    "@dynamic-labs/logger": 2.6.3
+    "@dynamic-labs/types": 2.6.3
+    "@dynamic-labs/utils": 2.6.3
+    "@dynamic-labs/wallet-book": 2.6.3
+    "@dynamic-labs/wallet-connector-core": 2.6.3
+    viem: ^2.7.6
+  checksum: 96d044eb4c5641ed604cae7386a8461e0f5547c45b00499881f0437310b1e26742680099ec52e465641838665f491f59a93944eb4a7ef13cd04fbdf877d80f01
+  languageName: node
+  linkType: hard
+
 "@dynamic-labs/wagmi-connector@npm:^3.0.0":
   version: 3.0.2
   resolution: "@dynamic-labs/wagmi-connector@npm:3.0.2"
@@ -5914,6 +5928,7 @@ __metadata:
     "@dynamic-labs/ethereum": ^3.0.0
     "@dynamic-labs/ethereum-core": 3.0.0
     "@dynamic-labs/sdk-react-core": ^3.0.0
+    "@dynamic-labs/viem-utils": ^2.6.2
     "@dynamic-labs/wagmi-connector": ^3.0.0
     "@emoji-mart/data": ^1.2.1
     "@emoji-mart/react": ^1.1.1
